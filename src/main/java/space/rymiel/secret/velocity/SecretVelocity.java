@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Supplier;
 
-@Plugin(id = "secret", name = "Secret", version = "${version}", authors = {"rymiel"})
+@Plugin(id = "secret", name = "Secret", version = "@version@", authors = {"rymiel"})
 public class SecretVelocity implements Secret<Player> {
   private Config config = null;
   private final Path dataDirectory;

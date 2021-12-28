@@ -2,6 +2,7 @@ import java.io.ByteArrayOutputStream
 
 plugins {
     java
+    id("net.kyori.blossom") version "1.3.0"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
@@ -14,9 +15,8 @@ val gitBuild: String = run {
     stdout.toString().trim()
 }
 
-
 group = "space.rymiel.secret"
-version = "0.0.1-b$gitBuild"
+version = "0.1.1-b$gitBuild"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
@@ -41,9 +41,6 @@ repositories {
 
 dependencies {
     implementation("cloud.commandframework", "cloud-annotations", "1.6.1")
-    compileOnly("net.kyori", "adventure-api", "4.9.3")
-    compileOnly("net.kyori", "adventure-platform-bungeecord", "4.0.0")
-    compileOnly("net.md-5", "bungeecord-api", "1.17-R0.1-SNAPSHOT")
     compileOnly("com.velocitypowered", "velocity-api", "3.0.1")
     compileOnly("com.velocitypowered", "velocity-proxy", "3.0.1")
     annotationProcessor("com.velocitypowered", "velocity-api", "3.0.1")
@@ -51,16 +48,11 @@ dependencies {
         isTransitive = false
     }
     implementation("org.spongepowered", "configurate-hocon", "4.1.2")
-    compileOnly("dev.simplix", "protocolize-api", "2.0.0")
 }
 
-tasks {
-    withType<ProcessResources> {
-        filteringCharset = "UTF-8"
-        filesMatching("*.yml") {
-            expand("version" to rootProject.version)
-        }
-    }
+blossom {
+    replaceTokenIn("src/main/java/space/rymiel/secret/velocity/SecretVelocity.java")
+    replaceToken("@version@", rootProject.version)
 }
 
 tasks {
