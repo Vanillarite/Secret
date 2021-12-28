@@ -16,7 +16,7 @@ val gitBuild: String = run {
 }
 
 group = "space.rymiel.secret"
-version = "0.1.1-b$gitBuild"
+version = "0.1.2-b$gitBuild"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
