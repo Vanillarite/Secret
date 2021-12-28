@@ -36,7 +36,7 @@ public record CommandEntry(
   public boolean matches(String command) {
     return switch (this.mode) {
       case REGEX -> command.matches(this.command);
-      case GLOB -> command.startsWith(this.command);
+      case GLOB -> command.startsWith(this.command) && !command.split(" ")[0].contains(":");
       case REGULAR -> (command.equals(this.command) || command.startsWith(this.command + ' '));
     };
   }
