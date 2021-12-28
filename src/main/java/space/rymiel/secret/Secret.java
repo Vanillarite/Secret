@@ -17,7 +17,6 @@ public interface Secret<Player> {
   ArrayList<CommandEntry> entries();
   void reloadConfig();
   void debug(Supplier<String> s);
-  void async(Runnable runnable);
   HashSet<String> groups(Player player);
 
   default boolean isCommandBlocked(String command, Collection<String> groups, @Nullable ArrayList<CommandEntry> trace) {

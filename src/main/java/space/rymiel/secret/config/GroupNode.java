@@ -31,9 +31,6 @@ public record GroupNode(
       @Nullable ArrayList<String> whitelist,
       @Nullable ArrayList<String> blacklist
   ) {
-    public GroupListing() {
-      this(new ArrayList<>(), new ArrayList<>());
-    }
   }
 
   public ArrayList<CommandEntry> convertEntries(String ownerName) {

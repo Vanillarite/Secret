@@ -76,11 +76,6 @@ public class SecretVelocity implements Secret<Player> {
   }
 
   @Override
-  public void async(Runnable runnable) {
-    server.getScheduler().buildTask(this, runnable).schedule();
-  }
-
-  @Override
   public void debug(Supplier<String> s) {
     if (config.debug()) {
       this.logger.info("[DEBUG] %s".formatted(s.get()));

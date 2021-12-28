@@ -1,4 +1,0 @@
-name: Secret
-version: '${version}'
-main: space.rymiel.secret.Secret
-author: rymiel
