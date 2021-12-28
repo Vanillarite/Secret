@@ -32,6 +32,7 @@ repositories {
     maven("https://hub.spigotmc.org/nexus/content/groups/public/")
     maven("https://repo.essentialsx.net/releases/")
     maven("https://repo.essentialsx.net/snapshots/")
+    maven("https://nexus.velocitypowered.com/repository/maven-public/")
     maven("https://repo.codemc.org/repository/maven-public")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     maven("https://jitpack.io")
@@ -39,10 +40,13 @@ repositories {
 }
 
 dependencies {
-    implementation("cloud.commandframework:cloud-annotations:1.5.0")
-    compileOnly("net.kyori:adventure-api:4.9.3")
-    compileOnly("net.kyori:adventure-platform-bungeecord:4.0.0")
-    compileOnly("net.md-5:bungeecord-api:1.17-R0.1-SNAPSHOT")
+    implementation("cloud.commandframework", "cloud-annotations", "1.6.1")
+    compileOnly("net.kyori", "adventure-api", "4.9.3")
+    compileOnly("net.kyori", "adventure-platform-bungeecord", "4.0.0")
+    compileOnly("net.md-5", "bungeecord-api", "1.17-R0.1-SNAPSHOT")
+    compileOnly("com.velocitypowered", "velocity-api", "3.0.1")
+    compileOnly("com.velocitypowered", "velocity-proxy", "3.0.1")
+    annotationProcessor("com.velocitypowered", "velocity-api", "3.0.1")
     implementation("net.kyori", "adventure-text-minimessage", "4.2.0-SNAPSHOT") {
         isTransitive = false
     }
