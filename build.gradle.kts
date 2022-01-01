@@ -1,22 +1,12 @@
-import java.io.ByteArrayOutputStream
-
 plugins {
     java
     id("net.kyori.blossom") version "1.3.0"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
-val gitBuild: String = run {
-    val stdout = ByteArrayOutputStream()
-    rootProject.exec {
-        commandLine("git", "rev-list", "--count", "HEAD")
-        standardOutput = stdout
-    }
-    stdout.toString().trim()
-}
-
+val buildNum = System.getenv("CI_PIPELINE_IID") ?: "dirty"
 group = "space.rymiel.secret"
-version = "0.1.2-b$gitBuild"
+version = "0.1.2-$buildNum"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
