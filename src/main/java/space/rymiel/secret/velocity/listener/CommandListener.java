@@ -46,7 +46,7 @@ public record CommandListener(SecretVelocity plugin) {
             break;
           }
         }
-        if (isPlCommand) {
+        if (isPlCommand && !player.hasPermission("secret.pl")) {
           player.sendMessage(MiniMessage.miniMessage().parse(plFakeMessage));
           commandEvent.setResult(CommandExecuteEvent.CommandResult.denied());
           return;
