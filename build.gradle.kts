@@ -6,7 +6,7 @@ plugins {
 
 val buildNum = System.getenv("CI_PIPELINE_IID") ?: "dirty"
 group = "space.rymiel.secret"
-version = "0.1.2-$buildNum"
+version = "0.1.3-$buildNum"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16

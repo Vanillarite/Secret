@@ -12,6 +12,7 @@ import space.rymiel.secret.config.CommandEntry;
 import space.rymiel.secret.velocity.SecretVelocity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public record CommandListener(SecretVelocity plugin) {
 
@@ -26,7 +27,7 @@ public record CommandListener(SecretVelocity plugin) {
   @Subscribe
   public void onCommand(CommandExecuteEvent commandEvent) {
     var commandSource = commandEvent.getCommandSource();
-    var command = "/" + commandEvent.getCommand();
+    var command = "/" + commandEvent.getCommand().toLowerCase(Locale.ROOT);
     var commandFirstPart = command.split(" ")[0];
     final var plFakeMessage = plugin.config().plFakeMessage();
     if (command.equals("/secret reload")) {
