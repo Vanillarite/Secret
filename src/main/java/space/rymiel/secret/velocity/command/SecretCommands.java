@@ -7,23 +7,16 @@ import cloud.commandframework.annotations.CommandPermission;
 import cloud.commandframework.annotations.specifier.Greedy;
 import cloud.commandframework.annotations.suggestions.Suggestions;
 import cloud.commandframework.context.CommandContext;
-import com.google.common.collect.Streams;
 import com.velocitypowered.api.command.CommandSource;
-import com.velocitypowered.api.event.command.CommandExecuteEvent;
-import com.velocitypowered.api.proxy.Player;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.configurate.ConfigurateException;
-import org.spongepowered.configurate.serialize.SerializationException;
 import space.rymiel.secret.config.CommandEntry;
 import space.rymiel.secret.config.GroupNode;
 import space.rymiel.secret.velocity.SecretVelocity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static net.kyori.adventure.text.Component.text;
 import static net.kyori.adventure.text.format.NamedTextColor.DARK_GREEN;

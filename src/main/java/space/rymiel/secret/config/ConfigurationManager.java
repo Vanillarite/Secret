@@ -25,10 +25,6 @@ public record ConfigurationManager<T>(File file, TypeToken<T> type, T instance) 
     return objectFactory.get(type).load(loader.load());
   }
 
-  public ObjectMapper.Factory objectFactory() {
-    return objectFactory;
-  }
-
   public HoconConfigurationLoader loader() {
     return configBuilder.path(file.toPath()).build();
   }
