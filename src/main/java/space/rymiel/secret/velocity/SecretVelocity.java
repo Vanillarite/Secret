@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SecretVelocity implements Secret<Player> {
   private final Logger logger;
   private final ProxyServer server;
   private ArrayList<CommandEntry> entries = null;
-  private final Set<String> knownBlocked = new HashSet<>();
+  private final Set<String> knownBlocked = Collections.synchronizedSet(new HashSet<>());
 
   public Config config() {
     return config;
