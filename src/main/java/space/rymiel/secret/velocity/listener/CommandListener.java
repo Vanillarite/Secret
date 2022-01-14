@@ -16,9 +16,9 @@ public record CommandListener(SecretVelocity plugin) {
 
   @SuppressWarnings("UnstableApiUsage")
   @Subscribe
-  public void onSuggestion(PlayerAvailableCommandsEvent packetSendEvent) {
-    RootCommandNode<?> rootCommandNode = packetSendEvent.getRootNode();
-    Player player = packetSendEvent.getPlayer();
+  public void onSuggestion(PlayerAvailableCommandsEvent availableCommandsEvent) {
+    RootCommandNode<?> rootCommandNode = availableCommandsEvent.getRootNode();
+    Player player = availableCommandsEvent.getPlayer();
     plugin.filterSuggestions("/", rootCommandNode, plugin.groups(player));
   }
 
