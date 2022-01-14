@@ -60,6 +60,7 @@ tasks {
         relocate("io.leangen.geantyref", "${rootProject.group}.shade.typetoken")
         relocate("net.kyori.adventure.text.minimessage", "${rootProject.group}.shade.minimessage")
         relocate("org.spongepowered.configurate", "${rootProject.group}.shade.configurate")
+        relocate("com.typesafe.config", "${rootProject.group}.shade.hocon")
 
         archiveClassifier.set(null as String?)
         destinationDirectory.set(rootProject.tasks.shadowJar.get().destinationDirectory.get())
