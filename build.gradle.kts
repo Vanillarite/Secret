@@ -6,7 +6,7 @@ plugins {
 
 val buildNum = System.getenv("CI_PIPELINE_IID") ?: "dirty"
 group = "space.rymiel.secret"
-version = "0.1.3-$buildNum"
+version = "0.2.0-$buildNum"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
@@ -30,6 +30,7 @@ repositories {
 }
 
 dependencies {
+    implementation("cloud.commandframework", "cloud-velocity", "1.6.1")
     implementation("cloud.commandframework", "cloud-annotations", "1.6.1")
     compileOnly("com.velocitypowered", "velocity-api", "3.0.1")
     compileOnly("com.velocitypowered", "velocity-proxy", "3.0.1")

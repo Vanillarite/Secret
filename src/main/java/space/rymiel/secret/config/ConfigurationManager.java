@@ -18,7 +18,6 @@ public record ConfigurationManager<T>(File file, TypeToken<T> type, T instance) 
   private static final HoconConfigurationLoader.Builder configBuilder = HoconConfigurationLoader.builder()
       .defaultOptions(opts ->
           opts.serializers(builder -> builder.registerAnnotatedObjects(objectFactory))
-              .shouldCopyDefaults(true)
       );
 
   public T loadConfig() throws ConfigurateException {
@@ -26,8 +25,16 @@ public record ConfigurationManager<T>(File file, TypeToken<T> type, T instance) 
     return objectFactory.get(type).load(loader.load());
   }
 
+  public ObjectMapper.Factory objectFactory() {
+    return objectFactory;
+  }
+
+  public HoconConfigurationLoader loader() {
+    return configBuilder.path(file.toPath()).build();
+  }
+
   public ConfigurationLoader<CommentedConfigurationNode> saveDefault() throws ConfigurateException {
-    var loader = configBuilder.path(file.toPath()).build();
+    var loader = loader();
     if (!file.exists()) {
       loader.save(loader.createNode().set(type, instance));
     }

@@ -30,14 +30,6 @@ public record CommandListener(SecretVelocity plugin) {
     var command = "/" + commandEvent.getCommand().toLowerCase(Locale.ROOT);
     var commandFirstPart = command.split(" ")[0];
     final var plFakeMessage = plugin.config().plFakeMessage();
-    if (command.equals("/secret reload")) {
-      if (commandSource.hasPermission("secret.reload")) {
-        plugin.reloadConfig();
-        commandSource.sendMessage(Component.text("Reloaded config", NamedTextColor.LIGHT_PURPLE));
-        commandEvent.setResult(CommandExecuteEvent.CommandResult.allowed());
-        return;
-      }
-    }
     if (commandSource instanceof Player player) {
       if (plFakeMessage != null) {
         boolean isPlCommand = false;
@@ -48,7 +40,7 @@ public record CommandListener(SecretVelocity plugin) {
           }
         }
         if (isPlCommand && !player.hasPermission("secret.pl")) {
-          player.sendMessage(MiniMessage.miniMessage().parse(plFakeMessage));
+          player.sendMessage(MiniMessage.miniMessage().deserialize(plFakeMessage));
           commandEvent.setResult(CommandExecuteEvent.CommandResult.denied());
           return;
         }
@@ -58,13 +50,14 @@ public record CommandListener(SecretVelocity plugin) {
       if (plugin.isCommandBlocked(command, groups, trace)) {
         final var blockMessage = plugin.config().blockMessage();
         if (blockMessage != null) {
-          player.sendMessage(MiniMessage.miniMessage().parse(blockMessage));
+          player.sendMessage(MiniMessage.miniMessage().deserialize(blockMessage));
         }
         if (plugin.config().debug()) {
           plugin.debug(() -> "Command '%s' was denied for '%s'. (Groups: %s; tried %s)".formatted(command, player.getUsername(), groups, trace));
         } else {
           plugin.logger().info("Command '%s' was denied for '%s'. (Last trace: %s)".formatted(command, player.getUsername(), trace.get(trace.size() - 1)));
         }
+        plugin.knownBlocked().add(command);
         commandEvent.setResult(CommandExecuteEvent.CommandResult.denied());
       }
     }
